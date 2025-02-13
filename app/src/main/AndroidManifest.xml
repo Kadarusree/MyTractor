@@ -11,38 +11,40 @@
         android:theme="@style/Theme.MyTractor"
         tools:targetApi="31">
         <activity
-            android:name=".DasboardScreen"
+            android:name=".ViewEditTractors"
+            android:exported="false" />
+        <activity
+            android:name=".DashboardScreen"
             android:exported="false"
             android:theme="@style/Theme.MyTractor" />
         <activity
             android:name=".ViewWorkScreen"
             android:exported="false"
-            android:parentActivityName=".DasboardScreen"/>
+            android:parentActivityName=".DashboardScreen" />
         <activity
             android:name=".LogWorkScreen"
             android:exported="false"
-            android:parentActivityName=".DasboardScreen"/>
+            android:parentActivityName=".DasboardScreen" />
         <activity
             android:name=".AddTractorScreen"
             android:exported="false"
-            android:parentActivityName=".DasboardScreen"/>
+            android:parentActivityName=".DasboardScreen" />
         <activity
             android:name=".SignupActivity"
             android:exported="false"
-            android:parentActivityName=".LoginScreen"/>
+            android:parentActivityName=".LoginScreen" />
         <activity
             android:name=".LoginScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".Home"
-            android:exported="true">
-
-        </activity>
+            android:exported="true"></activity>
     </application>
 
 </manifest>

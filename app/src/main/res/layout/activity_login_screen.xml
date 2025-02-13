@@ -64,6 +64,8 @@
                 android:layout_below="@id/title"
                 android:layout_marginTop="32dp"
                 android:hint="Email"
+                android:maxLines="1"
+                android:maxLength="50"
                 android:inputType="textEmailAddress" />
 
             <EditText
@@ -73,6 +75,8 @@
                 android:layout_below="@id/email"
                 android:layout_marginTop="16dp"
                 android:hint="Password"
+                android:maxLines="1"
+                android:maxLength="50"
                 android:inputType="textPassword" />
 
             <Button
