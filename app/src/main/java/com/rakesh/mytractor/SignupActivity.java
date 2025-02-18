@@ -1,5 +1,6 @@
 package com.rakesh.mytractor;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
@@ -30,11 +31,22 @@ public class SignupActivity extends AppCompatActivity {
             if (validateInput()) {
 
                 DatabaseHandler mDbHandler = new DatabaseHandler(SignupActivity.this);
-                mDbHandler.addUser(surnameEditText.getText().toString().trim(),
+              long id =   mDbHandler.addUser(surnameEditText.getText().toString().trim(),
                         nameEditText.getText().toString().trim(),
                         emailEditText.getText().toString().trim(),
                         passwordEditText.getText().toString().trim(),
                         dobEditText.getText().toString().trim());
+
+              if(id>0){
+                  Toast.makeText(SignupActivity.this, "Registration successful!", Toast.LENGTH_SHORT).show();
+                  new AlertDialog.Builder(SignupActivity.this)
+                          .setTitle("Success")
+                          .setMessage("You have successfully registered.")
+                          .setPositiveButton(android.R.string.ok, (dialog, which) -> {
+                                finish();
+                          })
+                          .show();
+              }
             }
         });
     }

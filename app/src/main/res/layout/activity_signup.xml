@@ -10,12 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.05"></LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.3"
+        android:layout_weight="0.15"
         android:orientation="vertical">
         <RelativeLayout
             android:layout_width="match_parent"
@@ -28,10 +23,10 @@
                 android:src="@drawable/tractor" />
         </RelativeLayout>
     </LinearLayout>
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.65">
+        android:layout_weight="0.85">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -55,6 +50,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_below="@id/title"
+                android:maxLines="1"
+                android:maxLength="40"
                 android:hint="Surname" />
 
             <EditText
@@ -63,6 +60,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_below="@id/surname"
+                android:maxLines="1"
+                android:maxLength="40"
                 android:hint="Name" />
 
             <EditText
@@ -72,6 +71,8 @@
                 android:layout_marginTop="16dp"
                 android:layout_below="@id/name"
                 android:hint="Email"
+                android:maxLines="1"
+                android:maxLength="40"
                 android:inputType="textEmailAddress" />
 
             <EditText
@@ -81,6 +82,8 @@
                 android:layout_marginTop="16dp"
                 android:hint="Password"
                 android:layout_below="@id/email"
+                android:maxLines="1"
+                android:maxLength="40"
                 android:inputType="textPassword" />
 
             <EditText
@@ -90,6 +93,8 @@
                 android:layout_marginTop="16dp"
                 android:layout_below="@id/password"
                 android:hint="Confirm Password"
+                android:maxLines="1"
+                android:maxLength="40"
                 android:inputType="textPassword" />
 
             <EditText
@@ -98,6 +103,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:hint="Date of Birth"
+                android:maxLines="1"
+                android:maxLength="40"
                 android:layout_below="@id/confirm_password"
                 android:inputType="date" />
 
@@ -109,7 +116,7 @@
                 android:layout_below="@id/dob"
                 android:text="Sign Up" />
         </RelativeLayout>
-    </LinearLayout>
+    </ScrollView>
 
 
 
