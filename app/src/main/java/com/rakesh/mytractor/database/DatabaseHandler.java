@@ -274,7 +274,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     return workLogs;
 }
 
-public List<WorkLog> getFilteredWorkLogs(String date, String tractor, String customerName, String workType) {
+public List<WorkLog> getFilteredWorkLogs(String date, String tractor, String customerName) {
     List<WorkLog> workLogs = new ArrayList<>();
     SQLiteDatabase db = this.getReadableDatabase();
     String query = "SELECT * FROM work_logs WHERE 1=1";
@@ -288,9 +288,7 @@ public List<WorkLog> getFilteredWorkLogs(String date, String tractor, String cus
     if (!customerName.isEmpty()) {
         query += " AND customer_name LIKE '%" + customerName + "%'";
     }
-    if (!workType.isEmpty()) {
-        query += " AND work_type = '" + workType + "'";
-    }
+
 
 
     Cursor cursor = db.rawQuery(query, null);

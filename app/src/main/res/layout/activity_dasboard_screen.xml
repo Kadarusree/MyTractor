@@ -88,6 +88,7 @@
                     android:layout_weight="0.2"
                     android:text="View Tractors"
                     android:textSize="18sp"
+                    android:textColor="@color/black"
                     android:layout_marginTop="10dp"
                     android:textAlignment="center" />
             </LinearLayout>
@@ -128,6 +129,7 @@
                     android:layout_weight="0.2"
                     android:text="Log Daily Work"
                     android:textSize="18sp"
+                    android:textColor="@color/black"
                     android:layout_marginTop="10dp"
                     android:textAlignment="center" />
             </LinearLayout>
@@ -159,6 +161,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="0.2"
                     android:text="View Reports"
+                    android:textColor="@color/black"
                     android:textSize="18sp"
                     android:layout_marginTop="10dp"
                     android:textAlignment="center" />
@@ -202,6 +205,7 @@
                     android:layout_weight="0.2"
                     android:text="About US"
                     android:textSize="18sp"
+                    android:textColor="@color/black"
                     android:layout_marginTop="10dp"
                     android:textAlignment="center" />
             </LinearLayout>
@@ -233,9 +237,9 @@
                     android:layout_height="0dp"
                     android:layout_weight="0.2"
                     android:text="Logout"
+                    android:textColor="@color/black"
                     android:textSize="18sp"
                     android:layout_marginTop="10dp"
-
                     android:textAlignment="center" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
