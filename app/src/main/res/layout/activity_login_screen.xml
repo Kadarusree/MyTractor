@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/backround"
     android:gravity="center_horizontal"
     tools:context=".LoginScreen">
 
@@ -95,6 +96,16 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="16dp"
                 android:text="Don't have an account? Sign up"
+                android:textColor="@android:color/holo_blue_dark" />
+
+            <TextView
+                android:id="@+id/forgot_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/signup_cta"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="16dp"
+                android:text="Forgot Password?"
                 android:textColor="@android:color/holo_blue_dark" />
         </RelativeLayout>
     </LinearLayout>

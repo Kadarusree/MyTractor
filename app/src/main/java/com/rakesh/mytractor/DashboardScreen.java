@@ -3,10 +3,12 @@ package com.rakesh.mytractor;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import com.rakesh.mytractor.database.DatabaseHandler;
 import com.rakesh.mytractor.session.SessionManager;
 
 public class DashboardScreen extends AppCompatActivity {
@@ -30,7 +32,7 @@ public class DashboardScreen extends AppCompatActivity {
         cardViewReports = findViewById(R.id.card_view_reports);
         cardLogout = findViewById(R.id.card_add_logout);
 
-        String userEmail = sessionManager.getUserEmail();
+        String userEmail = sessionManager.getUserName();
         userNameTextView.setText("Welcome, " + userEmail);
 
         cardAddTractor.setOnClickListener(v -> {
@@ -40,21 +42,32 @@ public class DashboardScreen extends AppCompatActivity {
 
         cardEditTractors.setOnClickListener(v -> {
             // Navigate to Edit Tractors screen
-            startActivity(new Intent(DashboardScreen.this, ViewEditTractors.class));
-
+            DatabaseHandler mDbHandler = new DatabaseHandler(DashboardScreen.this);
+            if (mDbHandler.getTractorsCountByUser(sessionManager.getUserName()) > 0){
+                startActivity(new Intent(DashboardScreen.this, ViewEditTractors.class));
+            }
+            else{
+                Toast.makeText(DashboardScreen.this, "No tractors found", Toast.LENGTH_SHORT).show();
+            }
         });
 
         cardLogDailyWork.setOnClickListener(v -> {
             // Navigate to Log Daily Work screen
-            startActivity(new Intent(DashboardScreen.this, LogWorkScreen.class));
+            DatabaseHandler mDbHandler = new DatabaseHandler(DashboardScreen.this);
+            if (mDbHandler.getTractorsCountByUser(sessionManager.getUserName()) > 0){
+                startActivity(new Intent(DashboardScreen.this, LogWorkScreen.class));
+            }
+            else{
+                Toast.makeText(DashboardScreen.this, "No tractors Added Yet", Toast.LENGTH_SHORT).show();
+            }
         });
 
         cardAddExpenses.setOnClickListener(v -> {
-            // Navigate to Add Expenses screen
+            startActivity(new Intent(DashboardScreen.this, AboutUS.class));
         });
 
         cardViewReports.setOnClickListener(v -> {
-            // Navigate to View Reports screen
+            startActivity(new Intent(DashboardScreen.this, ViewWorkScreen.class));
         });
 
         cardLogout.setOnClickListener(v -> {
@@ -63,5 +76,9 @@ public class DashboardScreen extends AppCompatActivity {
             startActivity(i);
             finish();
         });
+    }
+
+    @Override
+    public void onBackPressed() {
     }
 }

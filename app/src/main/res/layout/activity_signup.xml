@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
+    android:background="@color/backround"
     tools:context=".SignupActivity">
 
     <LinearLayout
@@ -106,7 +107,9 @@
                 android:maxLines="1"
                 android:maxLength="40"
                 android:layout_below="@id/confirm_password"
-                android:inputType="date" />
+                android:focusable="false"
+                android:clickable="true"
+                android:inputType="none" />
 
             <Button
                 android:id="@+id/signup_button"

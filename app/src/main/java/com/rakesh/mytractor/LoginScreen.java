@@ -19,9 +19,8 @@ public class LoginScreen extends AppCompatActivity {
 
     private EditText emailEditText, passwordEditText;
     private Button loginButton;
-    private TextView signUp;
+    private TextView signUp, forgotPassword;
     private SessionManager sessionManager;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +31,8 @@ public class LoginScreen extends AppCompatActivity {
         passwordEditText = findViewById(R.id.password);
         loginButton = findViewById(R.id.login_button);
         signUp = findViewById(R.id.signup_cta);
+        forgotPassword = findViewById(R.id.forgot_password);
         sessionManager = new SessionManager(this);
-
 
         loginButton.setOnClickListener(v -> {
             if (validateInput()) {
@@ -41,14 +40,12 @@ public class LoginScreen extends AppCompatActivity {
                 if (mDbHandler.checkUser(emailEditText.getText().toString().trim(),
                         passwordEditText.getText().toString().trim())) {
                     Toast.makeText(LoginScreen.this, "Login successful", Toast.LENGTH_SHORT).show();
-                    // Navigate to the main screen or dashboard
                     long userId = mDbHandler.getUserIdByEmail(emailEditText.getText().toString().trim());
-                    sessionManager.createLoginSession(userId, emailEditText.getText().toString().trim());
-                    Toast.makeText(LoginScreen.this, "Login successful", Toast.LENGTH_SHORT).show();
+                    String userName = mDbHandler.getUserName(userId);
+                    sessionManager.createLoginSession(userId, emailEditText.getText().toString().trim(), userName);
                     Intent i = new Intent(LoginScreen.this, DashboardScreen.class);
                     startActivity(i);
                     finish();
-
                 } else {
                     Toast.makeText(LoginScreen.this, "Invalid email or password", Toast.LENGTH_SHORT).show();
                 }
@@ -56,8 +53,12 @@ public class LoginScreen extends AppCompatActivity {
         });
 
         signUp.setOnClickListener(v -> {
-            // Navigate to the sign up screen
             Intent i = new Intent(LoginScreen.this, SignupActivity.class);
+            startActivity(i);
+        });
+
+        forgotPassword.setOnClickListener(v -> {
+            Intent i = new Intent(LoginScreen.this, ForgotPasswordScreen.class);
             startActivity(i);
         });
     }

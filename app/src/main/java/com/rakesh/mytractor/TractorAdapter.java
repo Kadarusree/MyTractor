@@ -7,12 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.rakesh.mytractor.database.DatabaseHandler;
 import com.rakesh.mytractor.model.Tractor;
+import com.rakesh.mytractor.database.DatabaseHandler;
 
 import java.util.List;
 
@@ -36,14 +37,30 @@ public class TractorAdapter extends RecyclerView.Adapter<TractorAdapter.TractorV
     @Override
     public void onBindViewHolder(@NonNull TractorViewHolder holder, int position) {
         Tractor tractor = tractorList.get(position);
-        holder.tractorName.setText(tractor.getName());
-        holder.tractorDetails.setText(tractor.getCompany() + ", " + tractor.getModel() + ", " + tractor.getYear() + ", " + tractor.getType());
+        holder.tractorName.setText("Name: " + tractor.getName());
+        holder.tractorCompany.setText("Company: " + tractor.getCompany());
+        holder.tractorModel.setText("Model: " + tractor.getModel());
+        holder.tractorYear.setText("Year: " + tractor.getYear());
+        holder.tractorType.setText("Type: " + tractor.getType());
 
-        holder.editButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        holder.itemView.setOnClickListener(v -> {
+            Toast.makeText(context, "Clicked on: " + tractor.getName(), Toast.LENGTH_SHORT).show();
+         //   Intent intent = new Intent(context, TractorDetailActivity.class);
+         //   intent.putExtra("TRACTOR_ID", tractor.getId());
+         //   context.startActivity(intent);
+        });
 
-            }
+        holder.editButton.setOnClickListener(v -> {
+            // Handle edit button click
+        });
+
+        holder.deleteButton.setOnClickListener(v -> {
+            DatabaseHandler dbHandler = new DatabaseHandler(context);
+            dbHandler.deleteTractor(tractor.getId());
+            tractorList.remove(position);
+            notifyItemRemoved(position);
+            notifyItemRangeChanged(position, tractorList.size());
+            Toast.makeText(context, "Deleted: " + tractor.getName(), Toast.LENGTH_SHORT).show();
         });
     }
 
@@ -54,14 +71,18 @@ public class TractorAdapter extends RecyclerView.Adapter<TractorAdapter.TractorV
 
     public static class TractorViewHolder extends RecyclerView.ViewHolder {
 
-        TextView tractorName, tractorDetails;
-        Button editButton;
+        TextView tractorName, tractorCompany, tractorModel, tractorYear, tractorType;
+        Button editButton, deleteButton;
 
         public TractorViewHolder(@NonNull View itemView) {
             super(itemView);
             tractorName = itemView.findViewById(R.id.tractor_name);
-            tractorDetails = itemView.findViewById(R.id.tractor_details);
+            tractorCompany = itemView.findViewById(R.id.tractor_company);
+            tractorModel = itemView.findViewById(R.id.tractor_model);
+            tractorYear = itemView.findViewById(R.id.tractor_year);
+            tractorType = itemView.findViewById(R.id.tractor_type);
             editButton = itemView.findViewById(R.id.edit_button);
+            deleteButton = itemView.findViewById(R.id.delete_button);
         }
     }
 }
